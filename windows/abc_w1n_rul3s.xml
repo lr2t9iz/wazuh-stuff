@@ -1,7 +1,7 @@
 <!-- https://wazuh.com/blog/hunting-for-windows-credential-access-attacks/ -->
 <group name="Windows,attack,x01">
   <!-- Detecting an LSASS memory dumping attack using Rundll32.exe Minidump Function or Comsvcs.dll Exploitation -->
-  <rule id="112001" level="10">
+  <rule id="112000" level="14">
     <if_sid>61609</if_sid>
     <field name="win.eventdata.image" type="pcre2">(?i)\\\\rundll32.exe</field>
     <field name="win.eventdata.imageLoaded" type="pcre2">(?i)[c-z]:\\\\Windows\\\\System32\\\\comsvcs\.dll</field>
@@ -12,7 +12,7 @@
   </rule>
 
   <!-- Detecting an LSASS memory dumping attack using specialized tools -->
-  <rule id="112002" level="10">
+  <rule id="112001" level="14">
     <if_sid>61613</if_sid>
     <field name="win.eventData.targetFilename" type="pcre2">(?i)\\\\[^\\]*\.dmp$</field>
     <field name="win.eventData.image" negate="yes" type="pcre2">(?i)\\\\lsass.*</field>
@@ -23,7 +23,7 @@
   </rule>
 
   <!-- Detecting a Windows Credential Manager exploitation attack -->
-  <rule id="112003" level="10">
+  <rule id="112002" level="14">
     <if_sid>61603</if_sid>
     <field name="win.eventData.Image" type="pcre2">(?i)\\\\rundll32.exe</field>
     <field name="win.eventData.commandLine" type="pcre2">keymgr.dll,KRShowKeyMgr</field>
@@ -34,7 +34,7 @@
   </rule>
 
   <!--  Detecting a Windows Credential Manager exploitation attack by VaultCmd process enumeration -->
-  <rule id="112004" level="10">
+  <rule id="112003" level="14">
     <if_sid>92052</if_sid>
     <field name="win.eventData.image" type="pcre2">(?i)\\\\vaultcmd.exe</field>
     <field name="win.eventData.commandLine" type="pcre2">list</field>
