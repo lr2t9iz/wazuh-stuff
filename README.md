@@ -4,7 +4,7 @@
 
 Wazuh XDR use cases' integrator scripts 
 
-## Prerequisites
+### Prerequisites
 - Have Wazuh Installed [Installation Guide](https://documentation.wazuh.com/current/deployment-options/index.html) or [Wazuh Docker Bundle](https://github.com/lr2t9iz/wazuh-docker-bundle)
 
 - Creation of groups on Wazuh Dashobard
@@ -20,6 +20,32 @@ For make changes and command monitoring (remote commands execution) on agent, en
 ## /var/ossec/etc/local_internal_options.conf
 logcollector.remote_commands=1
 ```
+
+## Wazuh Capabilities
+
+### wc001 - Vulnerability detection
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/vulnerability-detection/how-it-works.html)
+
+### wc002 - System inventory
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/system-inventory/how-it-works.html)
+
+### wc003 - Security Configuration Assessment (SCA)
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/sec-config-assessment/how-it-works.html)
+- [SCA - blog](https://wazuh.com/blog/security-configuration-assessment/)
+
+### wc004 - File integrity monitoring (FIM)
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/how-it-works.html)
+
+### wc005 - Log data collection
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/log-data-collection/how-it-works.html)
+
+### wc006 - Command monitoring
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/command-monitoring/how-it-works.html)
+
+### wc007 - Active Response
+
+## Wazuh Integration
+
 
 ## Refences
 - [Wazuh Server Administration](https://documentation.wazuh.com/current/user-manual/manager/index.html)
