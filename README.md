@@ -7,7 +7,7 @@ Wazuh XDR use cases' integrator scripts
 ### Prerequisites
 - Have Wazuh Installed [Installation Guide](https://documentation.wazuh.com/current/deployment-options/index.html) or [Wazuh Docker Bundle](https://github.com/lr2t9iz/wazuh-docker-bundle)
 
-- Creation of groups on Wazuh Dashobard
+- Groups creation on Wazuh Dashobard
   - `w1ndows_s0urces` for Windows Endpoint
   - `l1nux_s0urces` for Linux Endpoint
 
@@ -43,9 +43,19 @@ logcollector.remote_commands=1
 - [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/command-monitoring/how-it-works.html)
 
 ### wc007 - Active Response
+- Pending
+
+### wc008 - Osquery
+- [How it works](https://documentation.wazuh.com/current/user-manual/capabilities/osquery.html#how-it-works)
 
 ## Wazuh Integration
 
+### wi001 - Sysmon Integration
+- [Windows Edpoint](https://documentation.wazuh.com/current/user-manual/manager/wazuh-archives.html#sysmon-integration)
+- Linux Endpoint - Pending
+
+### wi002 - YARA Integration
+- [Windows/Linux Edpoint](https://documentation.wazuh.com/current/proof-of-concept-guide/detect-malware-yara-integration.html)
 
 ## Refences
 - [Wazuh Server Administration](https://documentation.wazuh.com/current/user-manual/manager/index.html)
