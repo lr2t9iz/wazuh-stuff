@@ -1,0 +1,24 @@
+<group name="syscheck,x01">
+  <rule id="112010" level="14">
+    <if_sid>550</if_sid>
+    <field name="file">/root/</field>
+    <description>File modified in /root directory.</description>
+  </rule>
+  <rule id="112011" level="14">
+    <if_sid>554</if_sid>
+    <field name="file">/root/</field>
+    <description>File added to /root directory.</description>
+  </rule>
+</group>
+
+<group name="yara,x01">
+  <rule id="112012" level="14">
+    <decoded_as>yara_decoder</decoded_as>
+    <description>Yara grouping rule</description>
+  </rule>
+  <rule id="112013" level="14">
+    <if_sid>112012</if_sid>
+    <match>wazuh-yara: INFO - Scan result: </match>
+    <description>File "$(yara_scanned_file)" is a positive match. Yara rule: $(yara_rule)</description>
+  </rule>
+</group>
