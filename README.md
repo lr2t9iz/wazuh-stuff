@@ -57,6 +57,10 @@ logcollector.remote_commands=1
 ### wi002 - YARA Integration
 - [Windows/Linux Edpoint](https://documentation.wazuh.com/current/proof-of-concept-guide/detect-malware-yara-integration.html)
 
+## Utils
+- [Wazuh Email CSVReporting](https://github.com/lr2t9iz/wazuh-email-csvreporting)
+- [Wazuh Indexer Rollup](https://github.com/lr2t9iz/wazuh-indexer-rollup)
+
 ## Refences
 - [Wazuh Server Administration](https://documentation.wazuh.com/current/user-manual/manager/index.html)
 - [Proof of Concept Guide](https://documentation.wazuh.com/current/proof-of-concept-guide/index.html)
