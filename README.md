@@ -31,10 +31,10 @@ logcollector.remote_commands=1
 ## Usage - Deploying
 - clone repo into wazuh server(manager) and exec the following command.
 ```bash
-# configuration for windows
+# configuration for windows endpoint
 bash deploy_for.sh windows
-# configuration for linux
-bash deploy_for.sh windows
+# configuration for linux edpoint
+bash deploy_for.sh linux
 ```
 
 ## Wazuh Utils
