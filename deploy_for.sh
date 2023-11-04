@@ -20,6 +20,12 @@ fi
 D1R="$(dirname $0)"
 WzDIR="/var/ossec"
 
+if [ -f "${D1R}/.env" ]; then 
+  export $(cat .env | xargs) 
+else
+  echo -e ".env file for credential not found!"
+  exit 1;
+fi
 
 if [ $1 == "windows" ]; then
   echo -e "Configuring use cases for windows ..."
@@ -49,8 +55,7 @@ else
   echo -e "Usage:\n\tSelect the platform: \"windows\" or \"linux\" as Parameter\n\tE.g. $ bash deploy_for.sh windows"
 fi
 
-
 # manager conf
-#cp "${D1R}/manager.conf"  "${WzDIR}/etc/ossec.conf"
-#"${WzDIR}/bin/wazuh-control" restart
-
+sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/manager.conf"
+cp "${D1R}/manager.conf"  "${WzDIR}/etc/ossec.conf"
+"${WzDIR}/bin/wazuh-control" restart

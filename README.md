@@ -4,7 +4,14 @@
 
 Wazuh XDR use cases' integrator scripts 
 
-### Prerequisites
+* [Prerequisites](#prerequisites)
+* [Usage](#usage---deploying)
+* [Wazuh Utils](#wazuh-utils)
+* [Wazuh Capabilities](#wazuh-capabilities)
+* [Wazuh Integrations](#wazuh-integration)
+* [References](#refences)
+
+## Prerequisites
 - Have Wazuh Installed [Installation Guide](https://documentation.wazuh.com/current/deployment-options/index.html) or [Wazuh Docker Bundle](https://github.com/lr2t9iz/wazuh-docker-bundle)
 
 - Groups creation on Wazuh Dashobard
@@ -20,6 +27,19 @@ For make changes and command monitoring (remote commands execution) on agent, en
 ## /var/ossec/etc/local_internal_options.conf
 logcollector.remote_commands=1
 ```
+- Configuration - Create the `.env` file for credentials. Take .env-example as reference
+## Usage - Deploying
+- clone repo into wazuh server(manager) and exec the following command.
+```bash
+# configuration for windows
+bash deploy_for.sh windows
+# configuration for linux
+bash deploy_for.sh windows
+```
+
+## Wazuh Utils
+- [Wazuh Email CSVReporting](https://github.com/lr2t9iz/wazuh-email-csvreporting)
+- [Wazuh Indexer Rollup](https://github.com/lr2t9iz/wazuh-indexer-rollup)
 
 ## Wazuh Capabilities
 
@@ -50,16 +70,15 @@ logcollector.remote_commands=1
 
 ## Wazuh Integration
 
+### wi000 - Slack Integration
+- [Alert Notification](https://documentation.wazuh.com/current/user-manual/manager/manual-integration.html#slack)
+
 ### wi001 - Sysmon Integration
 - [Windows Edpoint](https://documentation.wazuh.com/current/user-manual/manager/wazuh-archives.html#sysmon-integration)
 - Linux Endpoint - Pending
 
 ### wi002 - YARA Integration
 - [Windows/Linux Edpoint](https://documentation.wazuh.com/current/proof-of-concept-guide/detect-malware-yara-integration.html)
-
-## Utils
-- [Wazuh Email CSVReporting](https://github.com/lr2t9iz/wazuh-email-csvreporting)
-- [Wazuh Indexer Rollup](https://github.com/lr2t9iz/wazuh-indexer-rollup)
 
 ## Refences
 - [Wazuh Server Administration](https://documentation.wazuh.com/current/user-manual/manager/index.html)
