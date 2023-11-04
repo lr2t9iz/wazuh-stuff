@@ -21,7 +21,7 @@ D1R="$(dirname $0)"
 WzDIR="/var/ossec"
 
 if [ -f "${D1R}/.env" ]; then 
-  export $(cat .env | xargs) 
+  export $(cat ${D1R}/.env | xargs) 
 else
   echo -e ".env file for credential not found!"
   exit 1;
