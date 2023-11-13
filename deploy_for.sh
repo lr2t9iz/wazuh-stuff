@@ -56,7 +56,7 @@ else
 fi
 
 # IOCs
-cp "${D1R}/manager_resources/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
+cp -r "${D1R}/manager_resources/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
 
 # manager conf
 sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/manager.conf"
