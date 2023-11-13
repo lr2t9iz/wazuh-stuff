@@ -55,6 +55,9 @@ else
   echo -e "Usage:\n\tSelect the platform: \"windows\" or \"linux\" as Parameter\n\tE.g. $ bash deploy_for.sh windows"
 fi
 
+# IOCs
+cp "${D1R}/manager_resources/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
+
 # manager conf
 sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/manager.conf"
 cp "${D1R}/manager.conf"  "${WzDIR}/etc/ossec.conf"

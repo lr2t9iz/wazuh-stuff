@@ -1,3 +1,45 @@
+<group name="windows,">
+  <rule id="110000" level="3">
+    <!-- GET All Windows Security Events -->
+    <if_group>windows_security</if_group>
+    <group>windows_security,</group>
+    <description>Windows Security Events</description>
+    <options>no_full_log</options>
+  </rule>
+
+  <rule id="110001" level="3">
+    <!-- GET All Windows System Events -->
+    <if_group>windows_system</if_group>
+    <group>windows_system,</group>
+    <description>Windows System Events</description>
+    <options>no_full_log</options>
+  </rule>
+
+  <rule id="110002" level="3">
+    <!-- GET All Windows Application Events -->
+    <if_group>windows_application</if_group>
+    <group>windows_application,</group>
+    <description>Windows Application Events</description>
+    <options>no_full_log</options>
+  </rule>
+
+  <rule id="110003" level="3">
+    <!-- GET All Sysmon Events -->
+    <if_group>sysmon</if_group>
+    <group>sysmon,</group>
+    <description>Sysmon Events</description>
+    <options>no_full_log</options>
+  </rule>
+
+  <rule id="110004" level="3">
+    <!-- GET All Windows Defender Events -->
+    <if_group>windows_defender</if_group>
+    <group>windows_defender,</group>
+    <description>Windows Defender Events</description>
+    <options>no_full_log</options>
+  </rule>
+</group>
+
 <!-- https://wazuh.com/blog/hunting-for-windows-credential-access-attacks/ -->
 <group name="Windows,attack,x01">
   <!-- Detecting an LSASS memory dumping attack using Rundll32.exe Minidump Function or Comsvcs.dll Exploitation -->
@@ -43,5 +85,4 @@
       <id>T1003</id>
     </mitre>
   </rule>
-
 </group>

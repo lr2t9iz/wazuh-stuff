@@ -4,6 +4,11 @@
 
 Wazuh XDR use cases' integrator scripts 
 
+### Rule ID
+- Wazuh Rule [between 0 and 99999]
+- Custom Rule [between 100000 and 120000](https://documentation.wazuh.com/current/user-manual/ruleset/custom.html#adding-new-decoders-and-rules)
+  - Custom Integrator Rule [`between 110000 and 120000`][::10]
+
 * [Prerequisites](#prerequisites)
 * [Usage](#usage---deploying)
 * [Wazuh Utils](#wazuh-utils)
