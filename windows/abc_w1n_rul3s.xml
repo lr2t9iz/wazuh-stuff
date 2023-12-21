@@ -38,6 +38,20 @@
     <description>Windows Defender Events</description>
     <options>no_full_log</options>
   </rule>
+  
+  <!-- GET All Windows Powershell Events -->
+  <rule id="110005" level="3">
+    <if_sid>91801</if_sid>
+    <group>windows_powershell,</group>
+    <description>Windows Powershell Events</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="110006" level="3">
+    <if_sid>91802</if_sid>
+    <group>windows_powershell,</group>
+    <description>Windows Powershell Events</description>
+    <options>no_full_log</options>
+  </rule>
 </group>
 
 <!-- https://wazuh.com/blog/hunting-for-windows-credential-access-attacks/ -->
