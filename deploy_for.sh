@@ -56,9 +56,9 @@ else
 fi
 
 # IOCs
-cp -r "${D1R}/manager_resources/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
+cp -r "${D1R}/resources/manager/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
 
-# manager_resources/manager.conf
-sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/manager_resources/manager.conf"
-cp "${D1R}/manager_resources/manager.conf"  "${WzDIR}/etc/ossec.conf"
+# resources/manager/manager.conf
+sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/resources/manager/manager.conf"
+cp "${D1R}/resources/manager/manager.conf"  "${WzDIR}/etc/ossec.conf"
 "${WzDIR}/bin/wazuh-control" restart
