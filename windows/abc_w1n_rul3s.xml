@@ -99,4 +99,14 @@
       <id>T1003</id>
     </mitre>
   </rule>
+
+  <!-- The if_sid tag references the built-in FIM rules -->
+  <rule id="112020" level="12">
+    <if_sid>554</if_sid>
+    <list field="sha256" lookup="match_key">etc/lists/iocs/sha256_hash</list>
+    <description>File with known IOC detected: $(file)</description>
+    <mitre>
+      <id>T1204.002</id>
+    </mitre>
+  </rule>
 </group>
