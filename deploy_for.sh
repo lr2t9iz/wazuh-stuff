@@ -57,7 +57,7 @@ fi
 
 # Integrations
 
-cp -r "${D1R}/resources/manager/integrations/" "${WzDIR}/integrations/"
+cp -r "${D1R}/resources/manager/integrations/*" "${WzDIR}/integrations/"
 chown -R  root:wazuh "${WzDIR}/integrations/"
 
 # IOCs
@@ -65,6 +65,7 @@ cp -r "${D1R}/resources/manager/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
 chown -R  wazuh:wazuh "${WzDIR}/etc/lists/"
 
 # resources/manager/manager.conf
-sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/resources/manager/manager.conf"
+sed -i "s|SLACK_HOOK|${SLACK_HOOK}|g" "${D1R}/resources/manager/manager.conf"
+sed -i "s|TEAMS_HOOK|${TEAMS_HOOK}|g" "${D1R}/resources/manager/manager.conf"
 cp "${D1R}/resources/manager/manager.conf"  "${WzDIR}/etc/ossec.conf"
 "${WzDIR}/bin/wazuh-control" restart
