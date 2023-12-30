@@ -57,8 +57,10 @@ fi
 
 # Integrations
 
-cp -r "${D1R}/resources/manager/integrations/*" "${WzDIR}/integrations/"
+cp -r "${D1R}/resources/manager/integrations/custom-teams_webhook" "${WzDIR}/integrations/"
+cp -r "${D1R}/resources/manager/integrations/custom-teams_webhook.py" "${WzDIR}/integrations/"
 chown -R  root:wazuh "${WzDIR}/integrations/"
+chmod -R 750 "${WzDIR}/integrations/"
 
 # IOCs
 cp -r "${D1R}/resources/manager/cdb-lists/iocs/" "${WzDIR}/etc/lists/"

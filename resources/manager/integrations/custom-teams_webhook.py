@@ -82,7 +82,7 @@ def generate_msg(alert):
         agent_info = f"Agentless Host {alert['agentless']['host']}"
 
     msg = f"{title}:\n\n{agent_info}\n\n{alert['rule']['groups']}"
-    attach = { "type": "message", "attachments": [ { "contentType":"application/vnd.microsoft.card.adaptive", "content": { "body": [ { "type": "TextBlock", "text": msg } ] } } ] }
+    attach = { "text": msg }
     return json.dumps(attach)
 
 
