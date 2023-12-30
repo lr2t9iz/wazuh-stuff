@@ -55,8 +55,14 @@ else
   echo -e "Usage:\n\tSelect the platform: \"windows\" or \"linux\" as Parameter\n\tE.g. $ bash deploy_for.sh windows"
 fi
 
+# Integrations
+
+cp -r "${D1R}/resources/manager/integrations/" "${WzDIR}/integrations/"
+chown -R  root:wazuh "${WzDIR}/integrations/"
+
 # IOCs
 cp -r "${D1R}/resources/manager/cdb-lists/iocs/" "${WzDIR}/etc/lists/"
+chown -R  wazuh:wazuh "${WzDIR}/etc/lists/"
 
 # resources/manager/manager.conf
 sed -i "s|WEBHOOK_URL|${SLACK_HOOK}|g" "${D1R}/resources/manager/manager.conf"
