@@ -1,6 +1,6 @@
 D1R="$(dirname $0)"
 WzDIR="/var/ossec"
-rule_files=("aaa_w1n_overwrite.xml" "abc_l1n_base.xml")
+rule_files=("aaa_w1n_overwrite.xml" "abc_w1n_base.xml")
 
 # Update changes
 for r_file in ${rule_files[@]}; do
