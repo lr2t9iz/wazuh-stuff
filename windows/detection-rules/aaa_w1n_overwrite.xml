@@ -1,0 +1,10 @@
+<group name="al3rt,">
+  <rule id="91837" level="4" overwrite="yes">
+    <if_sid>91802</if_sid>
+    <field name="win.eventdata.scriptBlockText" type="pcre2">(?i)(Get-Content.+\-Stream|IEX|Invoke-Expresion)</field>
+    <group>windows,powershell,</group>
+    <description>Powershell executed "Get-Content -Stream or Invoke-Expresion". Possible string execution as code</description>
+    <options>no_full_log</options>
+    <mitre> <id>T1059.001</id> </mitre>
+  </rule>
+</group>
