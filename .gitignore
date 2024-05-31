@@ -1,4 +1,2 @@
 .env
 t3mp/
-*temp.txt
-*.ndjson
