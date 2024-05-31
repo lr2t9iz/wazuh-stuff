@@ -61,11 +61,6 @@
     <log_format>eventchannel</log_format>
   </localfile>
 
-  <localfile>
-    <location>Windows PowerShell</location>
-    <log_format>eventchannel</log_format>
-  </localfile>
-
   <!-- wi001 + Sysmon integration + + + + + -->
   <localfile>
     <location>Microsoft-Windows-Sysmon/Operational</location>
@@ -77,10 +72,20 @@
     <log_format>eventchannel</log_format>
   </localfile>
 
+  <localfile>
+    <location>Microsoft-Windows-Windows Firewall With Advanced Security/Firewall</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+
 	<localfile>
 		<location>Microsoft-Windows-PowerShell/Operational</location>
 		<log_format>eventchannel</log_format>
 	</localfile>
+
+  <localfile>
+    <location>Windows PowerShell</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
 
   <localfile>
     <location>active-response\active-responses.log</location>
