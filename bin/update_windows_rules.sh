@@ -1,5 +1,7 @@
-D1R="$(dirname $0)"
+D1R="$(dirname $0)/.."
 WzDIR="/var/ossec"
+
+# rules-files list
 rule_files=("aaa_w1n_overwrite.xml" "abc_w1n_base.xml")
 
 # Update changes

@@ -1,112 +1,13 @@
+<!--
+  Rules 110000 - 11099
+-->
+
+<!-- S1EM - GET All Windows Events + filterOut -->
+
 <group name="windows,">
   <rule id="110000" level="3">
-    <!-- GET All Windows Security Events -->
-    <if_group>windows_security</if_group>
-    <group>windows_security,</group>
-    <description>Windows Security Events</description>
+    <if_group>windows</if_group>
+    <description>Windows Event.</description>
     <options>no_full_log</options>
-  </rule>
-
-  <rule id="110001" level="3">
-    <!-- GET All Windows System Events -->
-    <if_group>windows_system</if_group>
-    <group>windows_system,</group>
-    <description>Windows System Events</description>
-    <options>no_full_log</options>
-  </rule>
-
-  <rule id="110002" level="3">
-    <!-- GET All Windows Application Events -->
-    <if_group>windows_application</if_group>
-    <group>windows_application,</group>
-    <description>Windows Application Events</description>
-    <options>no_full_log</options>
-  </rule>
-
-  <rule id="110003" level="3">
-    <!-- GET All Sysmon Events -->
-    <if_group>sysmon</if_group>
-    <group>sysmon,</group>
-    <description>Sysmon Events</description>
-    <options>no_full_log</options>
-  </rule>
-
-  <rule id="110004" level="3">
-    <!-- GET All Windows Defender Events -->
-    <if_group>windows_defender</if_group>
-    <group>windows_defender,</group>
-    <description>Windows Defender Events</description>
-    <options>no_full_log</options>
-  </rule>
-  
-  <!-- GET All Windows Powershell Events -->
-  <rule id="110005" level="3">
-    <if_sid>91801</if_sid>
-    <group>windows_powershell,</group>
-    <description>Windows Powershell Events</description>
-    <options>no_full_log</options>
-  </rule>
-  <rule id="110006" level="3">
-    <if_sid>91802</if_sid>
-    <group>windows_powershell,</group>
-    <description>Windows Powershell Events</description>
-    <options>no_full_log</options>
-  </rule>
-</group>
-
-<!-- https://wazuh.com/blog/hunting-for-windows-credential-access-attacks/ -->
-<group name="Windows,attack,x01">
-  <!-- Detecting an LSASS memory dumping attack using Rundll32.exe Minidump Function or Comsvcs.dll Exploitation -->
-  <rule id="112000" level="14">
-    <if_sid>61609</if_sid>
-    <field name="win.eventdata.image" type="pcre2">(?i)\\\\rundll32.exe</field>
-    <field name="win.eventdata.imageLoaded" type="pcre2">(?i)[c-z]:\\\\Windows\\\\System32\\\\comsvcs\.dll</field>
-    <description>Possible adversary activity - LSASS memory dump: $(win.eventdata.imageLoaded) loaded by using $(win.eventData.image) on $(win.system.computer).</description>
-    <mitre>
-      <id>T1003.001</id>
-    </mitre>
-  </rule>
-
-  <!-- Detecting an LSASS memory dumping attack using specialized tools -->
-  <rule id="112001" level="14">
-    <if_sid>61613</if_sid>
-    <field name="win.eventData.targetFilename" type="pcre2">(?i)\\\\[^\\]*\.dmp$</field>
-    <field name="win.eventData.image" negate="yes" type="pcre2">(?i)\\\\lsass.*</field>
-    <description>Possible adversary activity - LSASS memory dump: $(win.eventdata.image) created a new file on $(win.system.computer) endpoint.</description>
-    <mitre>
-      <id>T1003.001</id>
-    </mitre>
-  </rule>
-
-  <!-- Detecting a Windows Credential Manager exploitation attack -->
-  <rule id="112002" level="14">
-    <if_sid>61603</if_sid>
-    <field name="win.eventData.Image" type="pcre2">(?i)\\\\rundll32.exe</field>
-    <field name="win.eventData.commandLine" type="pcre2">keymgr.dll,KRShowKeyMgr</field>
-    <description>Possible adversary activity - Credential Manager Access via $(win.eventData.Image) on $(win.system.computer) endpoint.</description>
-    <mitre>
-      <id>T1003</id>
-    </mitre>
-  </rule>
-
-  <!--  Detecting a Windows Credential Manager exploitation attack by VaultCmd process enumeration -->
-  <rule id="112003" level="14">
-    <if_sid>92052</if_sid>
-    <field name="win.eventData.image" type="pcre2">(?i)\\\\vaultcmd.exe</field>
-    <field name="win.eventData.commandLine" type="pcre2">list</field>
-    <description>Possible adversary activity - Attempt to list credentials via $(win.eventData.Image) on $(win.system.computer) endpoint.</description>
-    <mitre>
-      <id>T1003</id>
-    </mitre>
-  </rule>
-
-  <!-- The if_sid tag references the built-in FIM rules -->
-  <rule id="112020" level="12">
-    <if_sid>554</if_sid>
-    <list field="sha256" lookup="match_key">etc/lists/iocs/sha256_hash</list>
-    <description>File with known IOC detected: $(file)</description>
-    <mitre>
-      <id>T1204.002</id>
-    </mitre>
   </rule>
 </group>
