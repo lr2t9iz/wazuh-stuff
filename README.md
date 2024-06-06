@@ -18,28 +18,22 @@ Wazuh XDR use cases' integrator scripts
 
 ## Prerequisites
 - Have Wazuh Installed [Installation Guide](https://documentation.wazuh.com/current/deployment-options/index.html) or [Wazuh Docker Bundle](https://github.com/lr2t9iz/wazuh-docker-bundle)
-
 - Groups creation on Wazuh Dashobard
   - `w1ndows_s0urces` for Windows Endpoint
   - `l1nux_s0urces` for Linux Endpoint
-
-- Have an agent deployed and added to the group [reference](https://documentation.wazuh.com/current/installation-guide/wazuh-agent/index.html)
-For make changes and command monitoring (remote commands execution) on agent, enable `remote_commands` for each agents [reference](https://documentation.wazuh.com/current/user-manual/capabilities/command-monitoring/how-it-works.html)
-```
-# Windows Agent
-## C:\Program Files (x86)\ossec-agent\local_internal_options.conf
-# Linux Agent
-## /var/ossec/etc/local_internal_options.conf
-logcollector.remote_commands=1
-```
 - Configuration - Create the `.env` file for credentials. Take .env-example as reference
 ## Usage - Deploying
-- clone repo into wazuh server(manager) and exec the following command.
+- clone repo into wazuh server(manager) and exec the following command for the utilities
 ```bash
+# global configuration
+bash ./bin/update_manager_config.sh
+
 # configuration for windows endpoint
-bash deploy_for.sh windows
+bash ./bin/update_windows_sources.sh
+bash ./bin/update_windows_rules.sh
+
 # configuration for linux edpoint
-bash deploy_for.sh linux
+bash ./bin/update_linux_sources.sh
 ```
 
 ## Wazuh Utils
