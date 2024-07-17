@@ -2,12 +2,22 @@
   Rules 110000 - 11099
 -->
 
-<!-- S1EM - GET All Windows Events + filterOut -->
+<!-- S1EM - GET All Windows Events + publicFilterOut -->
 
-<group name="windows,">
+<!-- group name="windows,">
   <rule id="110000" level="3">
     <if_group>windows</if_group>
+    <if_level>0</if_level>
     <description>Windows Event.</description>
     <options>no_full_log</options>
+  </rule>
+</group -->
+
+<group name="windows, taskscheduler,">
+  <rule id="110014" level="3">
+    <if_sid>60000, 60009</if_sid>
+    <field name="win.system.channel">^Microsoft-Windows-TaskScheduler/Operational$</field>
+    <options>no_full_log</options>
+    <description>Windows TaskScheduler Event.</description>
   </rule>
 </group>
