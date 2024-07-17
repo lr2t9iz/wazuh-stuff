@@ -77,15 +77,30 @@
     <log_format>eventchannel</log_format>
   </localfile>
 
+  <!-- 
+    McLogEvent
+    Microsoft-Windows-Eventlog
+    Eventlog
+    Microsoft Antimalware
+    Microsoft-Windows-WMI-Activity
+  -->
+
   <localfile>
     <location>Microsoft-Windows-PowerShell/Operational</location>
     <log_format>eventchannel</log_format>
   </localfile>
 
+  <!-- others -->
+
   <localfile>
     <location>Windows PowerShell</location>
     <log_format>eventchannel</log_format>
   </localfile>
+
+  <localfile>
+    <location>Microsoft-Windows-TaskScheduler/Operational</location>
+    <log_format>eventchannel</log_format>
+  </localfile> 
 
   <localfile>
     <location>active-response\active-responses.log</location>
