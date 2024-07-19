@@ -1,0 +1,9 @@
+<group name="al3rt,">
+  <rule id="531" level="7" ignore="7200" overwrite="yes">
+    <if_sid>530</if_sid>
+    <match>ossec: output: 'df -P': /dev/</match>
+    <regex>9\d%|100%</regex>
+    <description>Partition usage exceeded 90% (disk space monitor).</description>
+    <group>ossec,low_diskspace,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+</group> 
