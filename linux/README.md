@@ -5,6 +5,8 @@
 ```sh
 # https://documentation.wazuh.com/current/user-manual/capabilities/command-monitoring/configuration.html#example-configuration
 echo 'logcollector.remote_commands=1' >> /var/ossec/etc/local_internal_options.conf
+
+systemctl restart wazuh-agent
 ```
 
 ## Use Cases

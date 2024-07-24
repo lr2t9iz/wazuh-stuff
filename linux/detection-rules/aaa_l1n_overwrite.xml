@@ -1,5 +1,5 @@
 <group name="al3rt,">
-  <rule id="531" level="7" ignore="7200" overwrite="yes">
+  <rule id="531" level="14" ignore="7200" overwrite="yes">
     <if_sid>530</if_sid>
     <match>ossec: output: 'df -P': /dev/</match>
     <regex>9\d%|100%</regex>
