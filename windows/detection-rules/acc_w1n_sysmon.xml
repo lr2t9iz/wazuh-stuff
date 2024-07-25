@@ -1,0 +1,22 @@
+<!--
+  c-137Lab Rules.
+-->
+
+<!--
+  Sysmon Rules 110500 - 110999
+-->
+
+<group name="windows,sysmon,">
+
+    <rule id="110500" level="6">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.image" type="pcre2">(?i)\\(c|w)script\.exe</field>
+      <options>no_full_log</options>
+      <description>Scripting interpreter spawned a new process</description>
+      <group>sysmon_eid1_detections,</group>
+      <mitre>
+        <id>T1059.007</id>
+      </mitre>
+    </rule>
+
+</group>
