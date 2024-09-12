@@ -1,14 +1,12 @@
 <!--
-  c-137Lab Rules.
--->
-
-<!--
+  c-137 Lab Rules |
   Sysmon Rules 110500 - 110999
 -->
 
 <group name="windows,sysmon,">
 
     <rule id="110500" level="6">
+      <!-- event collection -->
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.image" type="pcre2">(?i)\\(c|w)script\.exe</field>
       <options>no_full_log</options>
@@ -18,5 +16,16 @@
         <id>T1059.007</id>
       </mitre>
     </rule>
-
+    <rule id="110501" level="14">
+      <!-- https://raw.githubusercontent.com/SigmaHQ/sigma/779111a0dd80c510f7e44e6515e7dac929f87231/rules/windows/process_creation/proc_creation_win_wscript_cscript_dropper.yml -->
+      <if_sid>110500</if_sid>
+      <field name="win.eventdata.commandLine" type="pcre2">(?i).+(\\temp\\|\\tmp\\|\\users\\public\\|\\windows\\temp\\|appdata\\local\\temp\\|\\downloads\\).+\.(js|jse|vba|vbe|vbs|wsf).+</field>
+      <options>no_full_log</options>
+      <description>Potential Dropper Script Execution Via WScript/CScript.</description>
+      <group>sysmon_eid1_detections,al3rt,</group>
+      <mitre>
+        <id>T1059.007</id>
+        <id>T1059.005</id>
+      </mitre>
+    </rule>
 </group>
