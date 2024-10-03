@@ -1,10 +1,9 @@
 <!--
-  c-137 Lab Rules |
+  c-137 Labs Rules |
   Sysmon Rules 110500 - 110999
 -->
 
 <group name="windows,sysmon,">
-
     <rule id="110500" level="6">
       <!-- event collection -->
       <if_group>sysmon_event1</if_group>

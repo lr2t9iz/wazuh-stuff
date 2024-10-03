@@ -1,18 +1,17 @@
 <!--
-  c-137 Lab Rules
+  c-137 Labs Rules
 -->
 
 <group name="al3rt,">
-
   <rule id="91837" level="14" overwrite="yes">
+    <!-- https://raw.githubusercontent.com/SigmaHQ/sigma/1f1f31e99c3c1dd2ac21f471ca7ec67a923c3e87/rules/windows/process_creation/proc_creation_win_powershell_exec_data_file.yml -->
     <if_sid>91802</if_sid>
-    <field name="win.eventdata.scriptBlockText" type="pcre2">(?i)(Get-Content.+\-Stream|IEX|Invoke-Expresion)</field>
+    <field name="win.eventdata.scriptBlockText" type="pcre2">(?i)(Get-Content.+\-Stream|IEX|Invoke-Expression)</field>
     <options>no_full_log</options>
-    <description>Powershell executed "Get-Content -Stream or Invoke-Expresion". Possible string execution as code</description>
+    <description>Powershell executed "Get-Content -Stream or Invoke-Expression". Possible string execution as code</description>
     <group>windows,powershell,</group>
     <mitre>
       <id>T1059.001</id>
     </mitre>
   </rule>
-  
 </group>

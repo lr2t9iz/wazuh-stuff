@@ -1,10 +1,10 @@
 <!--
-  c-137 Lab Rules
+  c-137 Labs Rules
 -->
 
 <group name="al3rt,">
-  <!-- https://raw.githubusercontent.com/lr2t9iz/SigmaRulesHub/main/siem/siem_low_disk.yml -->
   <rule id="531" level="14" ignore="7200" overwrite="yes">
+    <!-- https://raw.githubusercontent.com/lr2t9iz/SigmaRulesHub/main/siem/siem_low_disk.yml -->
     <if_sid>530</if_sid>
     <match>ossec: output: 'df -P': /dev/</match>
     <regex>9\d%|100%</regex>
