@@ -1,0 +1,37 @@
+{
+  "name": "event_lack",
+  "type": "monitor",
+  "monitor_type": "query_level_monitor",
+  "enabled": true,
+  "schedule": { "period": { "unit": "MINUTES", "interval": 10 } },
+  "inputs": [{
+      "search": { "indices": [ "wazuh-alerts-*" ],
+         "query": {
+            "size": 0,
+            "aggregations": {},
+            "query": {
+               "bool": {
+                  "filter": [
+                     { "range": { "@timestamp": {
+                              "gte": "{{period_end}}||-10m",
+                              "lte": "{{period_end}}",
+                              "format": "epoch_millis"
+                           } } }
+                  ]
+               }
+            }
+         }
+      }
+   }],
+  "triggers": [{
+      "query_level_trigger": {
+         "name": "event_lack",
+         "severity": "3",
+         "condition": { "script": {
+               "source": "ctx.results[0].hits.total.value == 0",
+               "lang": "painless"
+            }},
+         "actions": []
+      }
+   }]
+}
