@@ -1,4 +1,4 @@
-# WAZUH - Use Cases Integrator [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit/)
+# WAZUH Stuff
 
 ## Overview
 
@@ -7,7 +7,7 @@ Wazuh XDR use cases' integrator scripts
 ### Rule ID
 - Wazuh Rule [between 0 and 99999]
 - Custom Rule [between 100000 and 120000](https://documentation.wazuh.com/current/user-manual/ruleset/custom.html#adding-new-decoders-and-rules)
-  - Custom Integrator Rule [`between 110000 and 120000`][::10]
+  - Custom Integrator Rule [`between 110000 and 119999`][::200] by files
 
 * [Prerequisites](#prerequisites)
 * [Usage](#usage---deploying)
