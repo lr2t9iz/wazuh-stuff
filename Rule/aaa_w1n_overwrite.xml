@@ -1,0 +1,52 @@
+<!--
+  c-137 Labs Modification Rules
+-->
+
+<var name="C_FREQ">5</var>
+<var name="C_FRAME">180</var> <!-- 3m -->
+
+<group name="al3rt,">
+  <rule overwrite="yes" id="60204" level="10" frequency="$C_FREQ" timeframe="$C_FRAME">
+    <if_matched_group>authentication_failed</if_matched_group>
+    <same_field>win.eventdata.targetUserName</same_field>
+    <description>UBA : Bruteforce Authentication Attempts (Vertical)</description>
+    <options>no_full_log</options>
+    <info type="link">https://www.ibm.com/docs/en/qradar-common?topic=authentication-uba-bruteforce-attempts</info>
+    <group>windows,windows_security,authentication_failures,UBA,</group>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+  </rule>
+
+  <rule overwrite="yes" id="60204" level="10" frequency="$C_FREQ" timeframe="$C_FRAME">
+    <if_matched_group>authentication_failed</if_matched_group>
+    <same_field>win.eventdata.targetUserName</same_field>
+    <description>UBA : Bruteforce Authentication Attempts (Vertical)</description>
+    <options>no_full_log</options>
+    <info type="link">https://www.ibm.com/docs/en/qradar-common?topic=authentication-uba-bruteforce-attempts</info>
+    <group>windows,windows_security,authentication_failures,UBA,</group>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+  </rule>  
+
+  <rule id="60204" level="10" frequency="$MS_FREQ" timeframe="240">
+    <if_matched_group>authentication_failed</if_matched_group>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <description>Multiple Windows Logon Failures</description>
+    <options>no_full_log</options>
+    <group>authentication_failures,pci_dss_10.2.4,pci_dss_10.2.5,pci_dss_11.4,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_SI.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+
+  <rule id="200024" level="3">
+    <if_sid>60122</if_sid>
+    <field name="win.system.eventID">^4625$</field>
+    <field name="win.eventdata.subjectUserName" negate="yes">(?i).*\$</field>
+    <field name="win.eventdata.targetUserName" negate="yes">(?i).*\$</field>
+    <options>no_full_log</options>
+    <description>DSOC Microsoft Windows Login Fallido</description>
+</rule>
+</group>
