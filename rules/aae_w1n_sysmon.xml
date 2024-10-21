@@ -1,6 +1,6 @@
 <!--
   c-137 Labs Rules |
-  Sysmon Rules 110500 - 110999
+  Sysmon Rules 110600 - 110999
 -->
 
 <group name="windows,sysmon,">
