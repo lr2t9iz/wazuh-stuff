@@ -1,4 +1,5 @@
 .env
 t3mp/
 
+*.log
 __pycache__/
