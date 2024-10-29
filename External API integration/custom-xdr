@@ -1,0 +1,78 @@
+#!/var/ossec/framework/python/bin/python3
+# >$ /var/ossec/framework/python/bin/pip3 install --upgrade pip
+# >$ chmod 750 /var/ossec/integrations/custom-xdr
+# >$ chown root:wazuh /var/ossec/integrations/custom-xdr
+
+#  <integration>
+#      <name>custom-xdr</name>
+#      <group>syscheck_file</group> <!-- detection group -->
+#      <hook_url>aa:bb,cc</hook_url> <!-- correlation modules -->
+#      <api_key>{}</api_key> <!-- response command json {} options -->
+#      <alert_format>json</alert_format>
+#  </integration>
+
+import sys
+import time
+import json
+import logging
+from pathlib import Path
+import importlib
+
+app_dir = Path(__file__).resolve().parent
+wazuh_dir = app_dir.parent  # /var/ossec/
+logging_file = wazuh_dir / "logs/integrations.log"
+
+logging.Formatter.converter = time.gmtime
+logging.basicConfig(filename=logging_file,
+                    level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+                    datefmt='%Y-%m-%dT%H:%M:%SZ')
+
+logger = logging.getLogger(__name__)
+
+def input_validation(args: list[str]) -> tuple[dict, list, dict, bool]:
+    try:
+        if len(args) >= 4:
+            with open(args[1]) as alert:
+                alert_json: dict = json.load(alert)
+            modules: list = args[3].split(":")
+            options: dict  = json.loads(args[2])
+            debug_enabled: bool = len(args) > 4 and args[4] == 'debug'
+            return alert_json, modules, options, debug_enabled
+        else:
+            logger.error(f"input_validation: Expected at least 4 arguments.")
+            sys.exit(1)
+    except Exception as e:
+        logger.error(f"input_validation: {e}")
+        sys.exit(1)
+
+def main(args: list[str]) -> None:
+    alert_json, modules, options, debug_enabled = input_validation(args)
+    logger.debug(f"main: app executed -> {modules}")
+    not debug_enabled and logging.getLogger().setLevel(logging.INFO) # DEBUG
+    logger.debug(f"main: {alert_json['rule']['description']}, {modules}, {options}, {debug_enabled}")
+
+    correlation_result: str = ""
+    correlation_m: str = modules[0]
+    if correlation_m:
+        try:
+            correlation_module = importlib.import_module(f"correlation.{correlation_m}")
+            correlation_result = correlation_module.run(alert_json)
+            logger.debug(f"cor result: {correlation_result}")
+        except Exception as e:
+            logger.error(f"main module: {e}")
+            sys.exit(1)
+
+    responses = [] if modules[1] == "" else modules[1].split(",")
+    if responses:
+        for module in responses:
+            try:
+                response_module = importlib.import_module(f"response.{module}")
+                response_module.run(alert_json, correlation_result, options)
+            except Exception as e:
+                logger.error(f"main module: {e}")
+                sys.exit(1)
+
+if __name__ == '__main__':
+    main(sys.argv)
+
