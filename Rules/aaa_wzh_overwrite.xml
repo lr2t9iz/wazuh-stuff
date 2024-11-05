@@ -1,0 +1,21 @@
+<group name="virustotal,">
+  <rule overwrite="yes" id="87105" level="12">
+    <if_sid>87100</if_sid>
+    <field name="virustotal.malicious">1</field>
+    <description>VirusTotal alert, $(virustotal.positives) positives: `$(virustotal.source.file)`</description>
+    <group>pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,</group>
+    <options>no_full_log</options>
+    <mitre>
+      <id>T1203</id>
+    </mitre>
+  </rule>
+</group>
+
+<group name="active_response,">
+  <rule overwrite="yes" id="657" level="3">
+    <if_sid>650</if_sid>
+    <field name="command">add|delete</field>
+    <description>Active response: `$(commandline)`</description>
+    <group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,tsc_CC7.4,</group>
+  </rule>
+</group>
